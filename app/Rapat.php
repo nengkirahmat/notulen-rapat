@@ -1,0 +1,26 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use App\Rapat;
+class Rapat extends Model
+{
+    protected $table="rapat";
+    protected $primaryKey="id_rapat";
+    protected $fillable = [
+        'id_jenis',
+        'id_tempat',
+        'judul_rapat',
+        'hari',
+        'tgl_rapat',
+        'jam_mulai',
+        'jam_akhir',
+        'pimpinan_rapat',
+        'sifat_rapat',
+        'status_rapat',
+    ];
+
+
+ 
+}
