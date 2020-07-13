@@ -12,3 +12,6 @@ Route::post('jenistable','JenisController@index');
 Route::resource('rapat','RapatController');
 Route::post('rapattable','RapatController@index');
 Route::resource('tempat','TempatController');
+Route::resource('peserta','PesertaController');
+Route::get('peserta/index/{id}','PesertaController@index');
+Route::post('pesertatable/{id}','PesertaController@index');

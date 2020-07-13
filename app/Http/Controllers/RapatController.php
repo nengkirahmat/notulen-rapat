@@ -55,6 +55,8 @@ class RapatController extends Controller
 
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Delete" class="btn btn-danger btn-sm deleterapat">Delete</a>';
 
+                    $btn = $btn . ' <a href="peserta/'.$row->id_rapat.'/tambah" data-toggle="tooltip" data-original-title="Tambah Peserta" class="btn btn-info btn-sm">Peserta</a>';
+
                     return $btn;
                 })
                 ->rawColumns(['tgl_rapat','waktu_rapat','status_rapat','action'])
