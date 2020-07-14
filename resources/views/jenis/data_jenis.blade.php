@@ -66,7 +66,7 @@
 </div>
 
 <script type="text/javascript">
-    $(function () {
+    $(document).ready(function(){
         //ajax setup
         $.ajaxSetup({
             headers: {

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Tempat extends Model
 {
     protected $table="tempat";
@@ -13,5 +13,5 @@ class Tempat extends Model
         'status_tempat',
     ];
 
-    
+    use SoftDeletes;
 }

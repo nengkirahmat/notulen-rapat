@@ -21,6 +21,7 @@ class RapatController extends Controller
         $rapat = DB::table('rapat')
                 ->join('jenis', 'jenis.id_jenis', '=', 'rapat.id_jenis')
                 ->join('tempat', 'tempat.id_tempat', '=', 'rapat.id_tempat')
+                ->orWhereNull("rapat.deleted_at")
                 ->get();
         if ($request->ajax()) {
             return Datatables::of($rapat)
@@ -42,7 +43,7 @@ class RapatController extends Controller
                     if ($row->status_rapat==1){
                         return "Belum Mulai";
                     }elseif($row->status_rapat==2){
-                        return "Proses";
+                        return "Berlangsung";
                     }elseif($row->status_rapat==3){
                         return "Selesai";
                     }elseif ($row->status_rapat==4) {
@@ -55,7 +56,7 @@ class RapatController extends Controller
 
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Delete" class="btn btn-danger btn-sm deleterapat">Delete</a>';
 
-                    $btn = $btn . ' <a href="peserta/'.$row->id_rapat.'/tambah" data-toggle="tooltip" data-original-title="Tambah Peserta" class="btn btn-info btn-sm">Peserta</a>';
+                    $btn = $btn . ' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info">Peserta</button></form>';
 
                     return $btn;
                 })
@@ -118,8 +119,9 @@ class RapatController extends Controller
      */
     public function destroy($id)
     {
-        $del=Rapat::destroy($id);
 
+        $del=Rapat::destroy($id);
+        dd($del);
         // return response
         if ($del){
         $response = [

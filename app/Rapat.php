@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Rapat;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Rapat extends Model
 {
     protected $table="rapat";
@@ -21,6 +22,6 @@ class Rapat extends Model
         'status_rapat',
     ];
 
-
+    use SoftDeletes;
  
 }

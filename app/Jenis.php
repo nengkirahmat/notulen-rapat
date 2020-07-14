@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Jenis extends Model
 {
@@ -12,4 +13,6 @@ class Jenis extends Model
         'nama_jenis',
         'status_jenis',
     ];
+
+    use SoftDeletes;
 }

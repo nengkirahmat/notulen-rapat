@@ -5,10 +5,51 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Peserta Rapat</h5>
-
+                <h5>Detail Rapat</h5>
             </div>
             <div class="ibox-content">
+               <div class="row" style="font-size: 16px;">
+                                <div class="col-sm-6">
+                                    <address>
+                                        <strong>Jenis Rapat</strong><br>
+                                        {{$rapat[0]->nama_jenis}}<br>
+                                        <strong>Tempat</strong><br>
+                                        {{$rapat[0]->nama_tempat}}<br>
+                                        <strong>Hari / Tanggal Rapat / Jam</strong><br>
+                                        @if($rapat[0]->jam_akhir=="00:00")
+                                        <?php $akhir="Selesai"; ?>
+                                        @else
+                                        <?php $akhir=$rapat[0]->jam_akhir; ?>
+                                        @endif
+                                        {{$rapat[0]->hari." / ".$rapat[0]->tgl_rapat." / ".$rapat[0]->jam_mulai." - ".$akhir}}<br>
+                                        <strong>Status Rapat</strong><br>
+                                        <?php
+                                        if ($rapat[0]->status_rapat==1){
+                                            $status="Belum Mulai";
+                                        }elseif ($rapat[0]->status_rapat==2) {
+                                            $status="Berlangsung";
+                                        }elseif ($rapat[0]->status_rapat==3) {
+                                            $status="Selesai";
+                                        }elseif ($rapat[0]->status_rapat==4) {
+                                            $status="Dibatalkan";
+                                        }
+                                        ?>
+                                        {{$status}}<br>                                    
+                                    </address>
+                                </div>
+
+                                <div class="col-sm-6 text-right">
+                                    <address>
+                                        <strong>Judul Rapat</strong><br>
+                                        {{$rapat[0]->judul_rapat}}<br>
+                                        <strong>Pimpinan Rapat</strong><br>
+                                        {{$rapat[0]->pimpinan_rapat}}<br>
+                                        <strong>Sifat Rapat</strong><br>
+                                        {{$rapat[0]->sifat_rapat}}<br>
+                                    </address>
+                                </div>
+                            </div>
+
                 <button class="btn btn-info ml-auto" id="createNewpeserta">Tambah Peserta Rapat</button>
                 <table id="dataTable" class="table table-striped table-bordered">
                     <thead>
@@ -40,7 +81,7 @@
             </div>
             <form id="pesertaForm" name="pesertaForm" class="form-horizontal">
                 <div class="modal-body">
-                    <input type="hidden" name="id_rapat" id="id_rapat" value="{{$id_rapat}}">
+                    <input type="hidden" name="id_rapat" id="id_rapat" value="{{$rapat[0]->id_rapat}}">
                     <input type="hidden" name="id_peserta" id="id_peserta">
                     <div class="form-group">
                         <label for="nama_peserta" class="col-sm-3 control-label">Nama Peserta</label>
@@ -74,7 +115,7 @@
 </div>
 
 <script type="text/javascript">
-    $(function () {
+    $(document).ready(function(){
         //ajax setup
         $.ajaxSetup({
             headers: {
@@ -83,14 +124,14 @@
         });
 
         // datatable
-        var id="{{$id_rapat}}";
+        var id="{{$rapat[0]->id_rapat}}";
         var table = $('#dataTable').DataTable({
             processing: true,
             serverSide: true,
            ajax: {
-            url: "{{ url('pesertatable').'/'.$id_rapat }}",
+            url: "{{ url('pesertatable').'/'.$rapat[0]->id_rapat }}",
             type: "POST",
-            data: {id_rapat:"{{$id_rapat}}"},
+            data: {id_rapat:"{{$rapat[0]->id_rapat}}"},
         },
             columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},

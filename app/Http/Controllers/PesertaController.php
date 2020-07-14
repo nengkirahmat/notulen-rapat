@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Peserta;
+use App\Rapat;
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\DB;
 
 class PesertaController extends Controller
 {
@@ -13,8 +15,9 @@ class PesertaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id=null)
+    public function index(Request $request)
     {
+        $id=$_POST['id_rapat'];
         $peserta = Peserta::where("id_rapat",$id)->get();
 
         if ($request->ajax()) {
@@ -38,8 +41,12 @@ class PesertaController extends Controller
                 ->rawColumns(['status_hadir','action'])
                 ->make(true);
         }
-        $id_rapat=$id;
-        return view('peserta.data_peserta', compact(array('peserta','id_rapat')));
+        $rapat=DB::table('rapat')
+                    ->join('jenis','jenis.id_jenis','=','rapat.id_jenis')
+                    ->join('tempat','tempat.id_tempat','=','rapat.id_tempat')
+                    ->where('rapat.id_rapat','=',$id)
+                    ->get();
+        return view('peserta.data_peserta', compact(array('peserta','rapat')));
     }
 
     /**
