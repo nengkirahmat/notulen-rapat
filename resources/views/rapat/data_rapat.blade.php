@@ -46,112 +46,121 @@
             <form id="rapatForm" name="rapatForm" class="form-horizontal">
                 <div class="modal-body">
                     <input type="hidden" name="id_rapat" id="id_rapat">
- <div class="row">
-        <div class="col-sm-6 b-r">                
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                        <label class="control-label">Jenis Rapat</label>
-                        <select name="id_jenis" class="form-control" id="id_jenis" required="">
-                            <option value="">Pilih</option>
-                            @foreach($jenis as $j)
-                            <option value="{{$j->id_jenis}}">{{$j->nama_jenis}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Hari Rapat</label>
-                        <select name="hari" class="form-control" id="hari" required="">
-                            <option value="Senin">Senin</option>
-                            <option value="Selasa">Selasa</option>
-                            <option value="Rabu">Rabu</option>
-                            <option value="Kamis">Kamis</option>
-                            <option value="Jum'at">Jum'at</option>
-                            <option value="Sabtu">Sabtu</option>
-                            <option value="Minggu">Minggu</option>
-                        </select>
-                    </div>
-                     <div class="form-group">
-                        <div class="col-sm-12">
-                        <label for="tgl_rapat" class="control-label">Tanggal Rapat</label>
-                       <div class="input-group date">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="tgl_rapat" id="tgl_rapat" class="form-control" value="{{date('Y-m-d')}}">
-                                </div>
-                       </div>
-<style>
-    .clockpicker-popover {
-    z-index: 999999;
-}
-</style>
-                       <div class="col-sm-6">
-                        <label for="jam_mulai" class="control-label">Jam Mulai</label>
-                         <div class="input-group clockpicker1" data-autoclose="true">
-                                <input type="text" name="jam_mulai" id="jam_mulai" class="form-control" value="00:00" >
-                                <span class="input-group-addon">
-                                    <span class="fa fa-clock-o"></span>
-                                </span>
+                    <div class="row">
+                        <div class="col-sm-6 b-r">                
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Jenis Rapat</label>
+                                <select name="id_jenis" class="form-control" id="id_jenis" required="">
+                                    <option value="">Pilih</option>
+                                    @foreach($jenis as $j)
+                                    <option value="{{$j->id_jenis}}">{{$j->nama_jenis}}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                            <div class="form-group">
+                                <label class="control-label">Hari Rapat</label>
+                                <select name="hari" class="form-control" id="hari" required="">
+                                    <option value="Senin">Senin</option>
+                                    <option value="Selasa">Selasa</option>
+                                    <option value="Rabu">Rabu</option>
+                                    <option value="Kamis">Kamis</option>
+                                    <option value="Jum'at">Jum'at</option>
+                                    <option value="Sabtu">Sabtu</option>
+                                    <option value="Minggu">Minggu</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label for="tgl_rapat" class="control-label">Tanggal Rapat</label>
+                                    <div class="input-group date">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="tgl_rapat" id="tgl_rapat" class="form-control" value="{{date('Y-m-d')}}">
+                                    </div>
+                                </div>
+                                <style>
+                                .clockpicker-popover {
+                                    z-index: 999999;
+                                }
+                            </style>
+                            <div class="col-sm-6">
+                                <label for="jam_mulai" class="control-label">Jam Mulai</label>
+                                <div class="input-group clockpicker1" data-autoclose="true">
+                                    <input type="text" name="jam_mulai" id="jam_mulai" class="form-control" value="00:00" >
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-clock-o"></span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="jam_akhir" class="control-label">Jam Selesai</label>
+                                <div class="input-group clockpicker2" data-autoclose="true">
+                                    <input type="text" name="jam_akhir" id="jam_akhir" class="form-control" value="00:00" >
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-clock-o"></span>
+                                    </span>
+                                </div>
+                            </div>  
                         </div>
 
-                        <div class="col-sm-6">
-                        <label for="jam_akhir" class="control-label">Jam Selesai</label>
-                         <div class="input-group clockpicker2" data-autoclose="true">
-                                <input type="text" name="jam_akhir" id="jam_akhir" class="form-control" value="00:00" >
-                                <span class="input-group-addon">
-                                    <span class="fa fa-clock-o"></span>
-                                </span>
-                            </div>
-                       </div>  
+                        <div class="form-group">
+                            <label class="control-label">Tempat Rapat</label>
+                            <select name="id_tempat" id="id_tempat" class="form-control" required="">
+                                <option value="">Pilih Tempat</option>
+                                <!-- <option value="" id="lain" style="font-size: 18px">Buat Tempat Lain</option>
+                                @foreach($tempat as $t)
+                                <option class="ada" value="{{$t->id_tempat}}">{{$t->nama_tempat}}</option>
+                                @endforeach -->
+                            </select>
+                            
+                        </div>
+                        <div class="form-group" id="tempatBaru" style="display: none;">
+                            <label class="control-label">Masukkan Nama Tempat</label>
+                            <input type="hidden" name="id_tempat2" id="id_tempat2">
+                            <input type="text" name="nama_tempat" id="nama_tempat" class="form-control" style="margin-bottom: 10px;">
+                            <button type="button" id="batalTempat" class="btn btn-white btn-xs">Batal</button>
+                            <button type="button" class="btn btn-primary btn-xs" id="addTempat">Tambahkan</button>
+                        </div>   
                     </div>
-
-                    <div class="form-group">
-                        <label class="control-label">Tempat Rapat</label>
-                        <select name="id_tempat" class="form-control" id="id_tempat" required="">
-                            <option value="">Pilih</option>
-                            @foreach($tempat as $t)
-                            <option value="{{$t->id_tempat}}">{{$t->nama_tempat}}</option>
-                            @endforeach
-                        </select>
-                    </div>   
-</div>
-</div>
-<div class="col-sm-6">
-    <div class="col-sm-12">
-                    <div class="form-group">
-                        <label for="judul_rapat" class="control-label">Judul Rapat</label>
-                        <input type="text" class="form-control" id="judul_rapat" name="judul_rapat" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="pimpinan_rapat" class="control-label">Pimpinan Rapat</label>
-                        <input type="text" class="form-control" id="pimpinan_rapat" name="pimpinan_rapat" required="">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Sifat Rapat</label>
-                        <select name="sifat_rapat" class="form-control" id="sifat_rapat" required="">
-                            <option value="">Pilih</option>
-                            <option value="Terbuka">Terbuka</option>
-                            <option value="Tertutup">Tertutup</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Status Rapat</label>
-                        <select name="status_rapat" class="form-control" id="status_rapat" required="">
-                            <option value="">Pilih</option>
-                            <option value="1">Belum Mulai</option>
-                            <option value="2">Proses</option>
-                            <option value="3">Selesai</option>
-                            <option value="4">Dibatalkan</option>
-                        </select>
-                    </div>
-  </div>
-  </div>                  
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary" id="saveBtn">Simpan</button>
-                </div>
-            </form>
-        </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="judul_rapat" class="control-label">Judul Rapat</label>
+                            <input type="text" class="form-control" id="judul_rapat" name="judul_rapat" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="pimpinan_rapat" class="control-label">Pimpinan Rapat</label>
+                            <input type="text" class="form-control" id="pimpinan_rapat" name="pimpinan_rapat" required="">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Sifat Rapat</label>
+                            <select name="sifat_rapat" class="form-control" id="sifat_rapat" required="">
+                                <option value="">Pilih</option>
+                                <option value="Terbuka">Terbuka</option>
+                                <option value="Tertutup">Tertutup</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Status Rapat</label>
+                            <select name="status_rapat" class="form-control" id="status_rapat" required="">
+                                <option value="">Pilih</option>
+                                <option value="1">Belum Mulai</option>
+                                <option value="2">Proses</option>
+                                <option value="3">Selesai</option>
+                                <option value="4">Dibatalkan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>                  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary" id="saveBtn">Simpan</button>
+            </div>
+        </form>
     </div>
+</div>
 </div>
 
 <script type="text/javascript">
@@ -164,15 +173,25 @@
         });
 
 
+        $.ajax({
+            url: "{{url('/tempat/data')}}",
+            type: 'get',
+            success: function(response){
+                $("#id_tempat").html(response);
+            }
+        });
+
+
+
 
         // datatable
         var table = $('#dataTable').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-            url: "{{ url('rapattable') }}",
-            type: "POST"
-        },
+                url: "{{ url('rapattable') }}",
+                type: "POST"
+            },
             columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'nama_jenis', name: 'nama_jenis'},
@@ -294,19 +313,87 @@
         //     });
         // });
 
-  
 
-$('.date').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true,
-                format: 'yyyy-mm-dd',
+
+        $('.date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            format: 'yyyy-mm-dd',
+        });
+
+        $('.clockpicker1').clockpicker();
+        $('.clockpicker2').clockpicker();
+    });
+
+$(document).on("click","#lain",function(){
+    $("#tempatBaru").css("display","block");
+})
+
+$(document).on("click","#batalTempat",function(){
+    $("#id_tempat2").val();
+    $("#nama_tempat").val();
+    $("#tempatBaru").css("display","none");
+})
+
+$(document).on("click",".ada",function(){
+    $("#id_tempat2").val();
+    $("#nama_tempat").val();
+    $("#tempatBaru").css("display","none");
+})
+
+$(document).on("click","#refresh",function(){
+    $.ajax({
+                url: "{{url('/tempat/data')}}",
+                type: 'get',
+                success: function(response){
+                    $("#id_tempat").html(response);
+                }
             });
 
-$('.clockpicker1').clockpicker();
-$('.clockpicker2').clockpicker();
-});
-</script>          
-@endsection
+})
+
+        // create or update tempat
+        $('#addTempat').click(function (e) {
+            e.preventDefault();
+            $(this).html('Menambahkan..');
+            var nama_tempat=$("#nama_tempat").val();
+            var status_tempat="1";
+            $.ajax({
+                data: {nama_tempat:nama_tempat,status_tempat:status_tempat},
+                url: "{{ url('tempat') }}",
+                type: "POST",
+                dataType: 'json',
+                success: function (data) {
+                    //$("#id_tempat2").val(data.id_tempat);
+                    $('#addTempat').html('Tambahkan');
+                    $('#tempatBaru').css('display','none');
+                    $.ajax({
+                        url: "{{url('/tempat/data')}}",
+                        type: 'get',
+                        success: function(response){
+                            $("#id_tempat").html(response);
+                        }
+                    });
+
+                    swal({
+                        title: "Berhasil!",
+                        text: "",
+                        type: "success"
+                    });
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                    $('#addTempat').html('Tambahkan');
+                }
+            });
+
+        });
+
+
+        
+
+    </script>          
+    @endsection

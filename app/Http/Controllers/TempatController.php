@@ -19,24 +19,24 @@ class TempatController extends Controller
 
         if ($request->ajax()) {
             return Datatables::of($tempat)
-                ->addIndexColumn()
-                ->addColumn('status_tempat',function ($row){
-                    if ($row->status_tempat==1){
-                        return "Aktif";
-                    }elseif($row->status_tempat==2){
-                        return "Non Aktif";
-                    }
-                })
-                ->addColumn('action', function ($row) {
+            ->addIndexColumn()
+            ->addColumn('status_tempat',function ($row){
+                if ($row->status_tempat==1){
+                    return "Aktif";
+                }elseif($row->status_tempat==2){
+                    return "Non Aktif";
+                }
+            })
+            ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_tempat="' . $row->id_tempat . '" data-original-title="Edit" class="edit btn btn-primary btn-sm edittempat">Edit</a>';
+                $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_tempat="' . $row->id_tempat . '" data-original-title="Edit" class="edit btn btn-primary btn-sm edittempat">Edit</a>';
 
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_tempat="' . $row->id_tempat . '" data-original-title="Delete" class="btn btn-danger btn-sm deletetempat">Delete</a>';
+                $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_tempat="' . $row->id_tempat . '" data-original-title="Delete" class="btn btn-danger btn-sm deletetempat">Delete</a>';
 
-                    return $btn;
-                })
-                ->rawColumns(['status_tempat','action'])
-                ->make(true);
+                return $btn;
+            })
+            ->rawColumns(['status_tempat','action'])
+            ->make(true);
         }
 
         return view('tempat.data_tempat', compact('tempat'));
@@ -50,15 +50,16 @@ class TempatController extends Controller
      */
     public function store(Request $request)
     {
-        tempat::updateOrCreate([
+        $id=tempat::updateOrCreate([
             'id_tempat' => $request->id_tempat
         ],[
             'nama_tempat' => $request->nama_tempat,
             'status_tempat' => $request->status_tempat,
-        ]);
+        ])->id_tempat;
 
         // return response
         $response = [
+            'id_tempat' => $id,
             'success' => true,
             'message' => 'Tempat saved successfully.',
         ];
@@ -89,17 +90,28 @@ class TempatController extends Controller
 
         // return response
         if ($del){
-        $response = [
-            'success' => true,
-            'message' => 'tempat deleted successfully.',
-        ];
-        return response()->json($response, 200);
-    }else{
-        $response = [
-            'success' => false,
-            'message' => 'Gagal Hapus Data',
-        ];
-        return response()->json($response, 500);
+            $response = [
+                'success' => true,
+                'message' => 'tempat deleted successfully.',
+            ];
+            return response()->json($response, 200);
+        }else{
+            $response = [
+                'success' => false,
+                'message' => 'Gagal Hapus Data',
+            ];
+            return response()->json($response, 500);
+        }
     }
+
+    public function data_tempat(){
+        $tempat=Tempat::All();
+        ?>
+        <option value="">Pilih Tempat</option>
+        <option value="" id="lain" style="font-size: 18px;">Buat Tempat Baru</option>
+        <?php
+        foreach($tempat as $t){
+            echo "<option class='ada' value='".$t->id_tempat."'>".$t->nama_tempat."</option>";
+        }
     }
 }

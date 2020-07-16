@@ -47,20 +47,20 @@
                         
                     </div>
                     <div class="logo-element">
-                        IN+
+                        RAPAT
                     </div>
                 </li>
                 <li>
                     <a href="/"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
                 </li>
                 <li>
-                    <a href="rapat"><i class="fa fa-edit"></i> <span class="nav-label">Data Rapat</span></a>
+                    <a href="/rapat"><i class="fa fa-edit"></i> <span class="nav-label">Data Rapat</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Master</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="jenis">Jenis Rapat</a></li>
-                        <li><a href="tempat">Tempat Rapat</a></li>
+                        <li><a href="/jenis">Jenis Rapat</a></li>
+                        <li><a href="/tempat">Tempat Rapat</a></li>
                     </ul>
                 </li>
             </ul>
@@ -192,7 +192,7 @@
             
         @yield("content")
         
-            <div class="footer">
+            <!-- <div class="footer">
                 <div class="pull-right">
                     
                 </div>
@@ -200,7 +200,7 @@
                     <strong>Copyright</strong> Pemerintah Kota Solok &copy; 2020
                 </div>
             </div>
-
+ -->
         </div>
         </div>
 

@@ -17,7 +17,12 @@ class PesertaController extends Controller
      */
     public function index(Request $request)
     {
+        if (!empty($_POST['id_rapat'])){
         $id=$_POST['id_rapat'];
+    }else{
+        return redirect()->back();
+    }
+
         $peserta = Peserta::where("id_rapat",$id)->get();
 
         if ($request->ajax()) {
