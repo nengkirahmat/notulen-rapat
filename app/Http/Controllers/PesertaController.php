@@ -67,7 +67,9 @@ class PesertaController extends Controller
         ],[
             'id_rapat' => $request->id_rapat,
             'nama_peserta' => $request->nama_peserta,
+            'divisi' => $request->divisi,
             'jabatan' => $request->jabatan,
+            'hp' => $request->hp,
             'status_hadir' => "0",
         ]);
 

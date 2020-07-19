@@ -56,7 +56,9 @@
                         <tr>
                             <th width="30px">No</th>
                             <th>Nama Peserta</th>
+                            <th>Divisi</th>
                             <th>Jabatan</th>
+                            <th>No. Ponsel</th>
                             <th>Status Hadir</th>
                             <th width="140px">Aksi</th>
                         </tr>
@@ -90,11 +92,23 @@
                     </div>
                     </div>
                     <div class="form-group">
+                        <label for="divisi" class="col-sm-3 control-label">Divisi</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" id="divisi" name="divisi" required="">
+                    </div>
+                </div>
+                    <div class="form-group">
                         <label for="jabatan" class="col-sm-3 control-label">Jabatan</label>
                         <div class="col-sm-9">
                         <input type="text" class="form-control" id="jabatan" name="jabatan" required="">
                     </div>
                     </div>
+                    <div class="form-group">
+                        <label for="hp" class="col-sm-3 control-label">No. Ponsel</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" id="hp" name="hp" required="">
+                    </div>
+                </div>
                     <!-- <div class="form-group">
                         <label class="col-sm-3 control-label">Status</label>
                         <div class="col-sm-9">
@@ -136,7 +150,9 @@
             columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'nama_peserta', name: 'nama_peserta'},
+            {data: 'divisi', name: 'divisi'},
             {data: 'jabatan', name: 'jabatan'},
+            {data: 'hp', name: 'hp'},
             {data: 'status_hadir', name: 'status_hadir'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
@@ -188,7 +204,9 @@
                 $('#ajaxModel').modal('show');
                 $('#id_peserta').val(data.id_peserta);
                 $('#nama_peserta').val(data.nama_peserta);
+                $('#divisi').val(data.divisi);
                 $('#jabatan').val(data.jabatan);
+                $('#hp').val(data.hp);
                 $('#status_hadir').val(data.status_peserta);
             })
         });

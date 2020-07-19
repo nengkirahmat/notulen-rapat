@@ -61,6 +61,7 @@
                             <div class="form-group">
                                 <label class="control-label">Hari Rapat</label>
                                 <select name="hari" class="form-control" id="hari" required="">
+                                    <option value="">Pilih Hari</option>
                                     <option value="Senin">Senin</option>
                                     <option value="Selasa">Selasa</option>
                                     <option value="Rabu">Rabu</option>
@@ -141,7 +142,8 @@
                                 <option value="Tertutup">Tertutup</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <input type="hidden" name="status_rapat" value="1">
+                        <!-- <div class="form-group" style="display: none;">
                             <label class="control-label">Status Rapat</label>
                             <select name="status_rapat" class="form-control" id="status_rapat" required="">
                                 <option value="">Pilih</option>
@@ -150,7 +152,7 @@
                                 <option value="3">Selesai</option>
                                 <option value="4">Dibatalkan</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>                  
             </div>

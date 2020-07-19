@@ -17,7 +17,9 @@ class CreatePesertaTable extends Migration
             $table->bigIncrements('id_peserta');
             $table->integer('id_rapat');
             $table->string("nama_peserta",255);
+            $table->string("divisi",200);
             $table->string("jabatan",200);
+            $table->string("hp",20);
             $table->string("status_hadir",1);
             $table->timestamps();
         });
