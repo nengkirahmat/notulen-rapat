@@ -29,9 +29,9 @@ class JenisController extends Controller
                 })
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_jenis="' . $row->id_jenis . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editjenis">Edit</a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_jenis="' . $row->id_jenis . '" data-original-title="Edit" class="edit btn btn-primary btn-xs editjenis"><i class="fa fa-pencil"></i> Ubah</a>';
 
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_jenis="' . $row->id_jenis . '" data-original-title="Delete" class="btn btn-danger btn-sm deletejenis">Delete</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_jenis="' . $row->id_jenis . '" data-original-title="Delete" class="btn btn-danger btn-xs deletejenis"><i class="fa fa-trash"></i> Hapus</a>';
 
                     return $btn;
                 })

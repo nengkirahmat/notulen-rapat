@@ -37,9 +37,9 @@ class PesertaController extends Controller
                 })
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_peserta="' . $row->id_peserta . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editpeserta">Edit</a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_peserta="' . $row->id_peserta . '" data-original-title="Edit" class="edit btn btn-primary btn-xs editpeserta"><i class="fa fa-pencil"></i> Ubah</a>';
 
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_peserta="' . $row->id_peserta . '" data-original-title="Delete" class="btn btn-danger btn-sm deletepeserta">Delete</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_peserta="' . $row->id_peserta . '" data-original-title="Delete" class="btn btn-danger btn-xs deletepeserta"><i class="fa fa-trash"></i> Hapus</a>';
 
                     return $btn;
                 })

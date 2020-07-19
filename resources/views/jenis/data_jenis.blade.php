@@ -9,7 +9,7 @@
 
             </div>
             <div class="ibox-content">
-                <button class="btn btn-info ml-auto" id="createNewjenis">Tambah Jenis Rapat</button>
+                <button class="btn btn-info ml-auto" id="createNewjenis"><i class="fa fa-plus"></i> Tambah Jenis</button>
                 <table id="dataTable" class="table table-striped table-bordered">
                     <thead>
                         <tr>

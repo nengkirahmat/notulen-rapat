@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Notulen;
 use App\Rapat;
 use App\Jenis;
 use App\Tempat;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\DB;
 
-class RapatController extends Controller
+class NotulenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -52,11 +52,9 @@ class RapatController extends Controller
                 })
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Ubah Status" class="edit btn btn-primary btn-xs editstatus"><i class="fa fa-pencil"></i> Ubah Status</a>';
 
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Edit" class="edit btn btn-primary  btn-xs editrapat"><i class="fa fa-pencil"></i> Ubah</a>';
-
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Delete" class="btn btn-danger  btn-xs deleterapat"><i class="fa fa-trash"></i> Hapus</a>';
+                    $btn = $btn . ' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
 
                     return $btn;
                 })
@@ -65,7 +63,7 @@ class RapatController extends Controller
         }
         $jenis=Jenis::All();
         $tempat=Tempat::All();
-        return view('rapat.data_rapat', compact(array('rapat','jenis','tempat')));
+        return view('notulen.data_notulen', compact(array('rapat','jenis','tempat')));
     }
 
     /**
@@ -76,25 +74,19 @@ class RapatController extends Controller
      */
     public function store(Request $request)
     {
-        rapat::updateOrCreate([
-            'id_rapat' => $request->id_rapat
+        Notulen::updateOrCreate([
+            'id_notulen' => $request->id_notulen
         ],[
-            'id_jenis' => $request->id_jenis,
-            'id_tempat' => $request->id_tempat,
-            'judul_rapat' => $request->judul_rapat,
-            'hari' => $request->hari,
-            'tgl_rapat' => $request->tgl_rapat,
-            'jam_mulai' => $request->jam_mulai,
-            'jam_akhir' => $request->jam_akhir,
-            'pimpinan_rapat' => $request->pimpinan_rapat,
-            'sifat_rapat' => $request->sifat_rapat,
-            'status_rapat' => $request->status_rapat,
-        ]);
+            'id_rapat' => $request->id_rapat,
+            'id_user' => 1,
+            'isi_rapat' => $request->isi_rapat,
+            'status_notulen' => $request->status_notulen,
+            ]);
 
         // return response
         $response = [
             'success' => true,
-            'message' => 'Rapat saved successfully.',
+            'message' => 'Notulen saved successfully.',
         ];
         return response()->json($response, 200);
     }
@@ -102,31 +94,31 @@ class RapatController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\rapat $rapat
+     * @param \App\notulen $notulen
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_rapat)
+    public function edit($id_notulen)
     {
-        $rapat = Rapat::find($id_rapat);
-        return response()->json($rapat);
+        $notulen = Notulen::find($id_notulen);
+        return response()->json($notulen);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id_rapat
+     * @param int $id_notulen
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
 
-        $del=Rapat::destroy($id);
+        $del=Notulen::destroy($id);
         dd($del);
         // return response
         if ($del){
         $response = [
             'success' => true,
-            'message' => 'rapat deleted successfully.',
+            'message' => 'Notulen deleted successfully.',
         ];
         return response()->json($response, 200);
     }else{

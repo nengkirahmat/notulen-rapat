@@ -9,7 +9,7 @@
 
             </div>
             <div class="ibox-content">
-                <button class="btn btn-info ml-auto" id="createNewtempat">Tambah Tempat Rapat</button>
+                <button class="btn btn-info ml-auto" id="createNewtempat"><i class="fa fa-plus"></i> Tambah Tempat</button>
                 <table id="dataTable" class="table table-striped table-bordered">
                     <thead>
                         <tr>

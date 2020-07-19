@@ -9,7 +9,7 @@
 
             </div>
             <div class="ibox-content">
-                <button class="btn btn-info ml-auto" id="createNewrapat">Tambah Rapat</button>
+                <button class="btn btn-info ml-auto" id="createNewrapat"><i class="fa fa-plus"></i> Tambah Rapat</button>
                 <table id="dataTable" class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -41,7 +41,7 @@
         <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Tambah Data Rapat</h4>
+                <h4 class="modal-title">Form Data Rapat</h4>
             </div>
             <form id="rapatForm" name="rapatForm" class="form-horizontal">
                 <div class="modal-body">

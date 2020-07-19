@@ -57,10 +57,13 @@
                     <a href="/rapat"><i class="fa fa-edit"></i> <span class="nav-label">Data Rapat</span></a>
                 </li>
                 <li>
+                    <a href="/proses"><i class="fa fa-spinner"></i> <span class="nav-label">Data Proses</span></a>
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Master</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="/jenis">Jenis Rapat</a></li>
-                        <li><a href="/tempat">Tempat Rapat</a></li>
+                        <li><a href="/jenis"><i class="fa fa-circle-o"></i> Jenis Rapat</a></li>
+                        <li><a href="/tempat"><i class="fa fa-circle-o"></i> Tempat Rapat</a></li>
                     </ul>
                 </li>
             </ul>

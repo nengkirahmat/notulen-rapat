@@ -16,3 +16,5 @@ Route::resource('tempat','TempatController');
 Route::resource('peserta','PesertaController');
 Route::post('peserta/tambah','PesertaController@index');
 Route::post('pesertatable/{id}','PesertaController@index');
+Route::resource('proses','NotulenController');
+Route::post('notulentable','NotulenController@index');

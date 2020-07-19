@@ -5,11 +5,11 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Detail Rapat</h5>
+                <h5><i class="fa fa-eye"></i> Detail Rapat</h5>
             </div>
             <div class="ibox-content">
                <div class="row" style="font-size: 16px;">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <address>
                                         <strong>Jenis Rapat</strong><br>
                                         {{$rapat[0]->nama_jenis}}<br>
@@ -22,6 +22,22 @@
                                         <?php $akhir=$rapat[0]->jam_akhir; ?>
                                         @endif
                                         {{$rapat[0]->hari." / ".$rapat[0]->tgl_rapat." / ".$rapat[0]->jam_mulai." - ".$akhir}}<br>
+                                                                            
+                                    </address>
+                                </div>
+                                <div class="col-sm-4">
+                                    <address>
+                                        <strong>Judul Rapat</strong><br>
+                                        {{$rapat[0]->judul_rapat}}<br>
+                                        <strong>Pimpinan Rapat</strong><br>
+                                        {{$rapat[0]->pimpinan_rapat}}<br>
+                                        
+                                    </address>
+                                </div>
+                                <div class="col-sm-4">
+                                    <address>
+                                        <strong>Sifat Rapat</strong><br>
+                                        {{$rapat[0]->sifat_rapat}}<br>
                                         <strong>Status Rapat</strong><br>
                                         <?php
                                         if ($rapat[0]->status_rapat==1){
@@ -34,23 +50,12 @@
                                             $status="Dibatalkan";
                                         }
                                         ?>
-                                        {{$status}}<br>                                    
-                                    </address>
-                                </div>
-
-                                <div class="col-sm-6 text-right">
-                                    <address>
-                                        <strong>Judul Rapat</strong><br>
-                                        {{$rapat[0]->judul_rapat}}<br>
-                                        <strong>Pimpinan Rapat</strong><br>
-                                        {{$rapat[0]->pimpinan_rapat}}<br>
-                                        <strong>Sifat Rapat</strong><br>
-                                        {{$rapat[0]->sifat_rapat}}<br>
+                                        {{$status}}<br>
                                     </address>
                                 </div>
                             </div>
 
-                <button class="btn btn-info ml-auto" id="createNewpeserta">Tambah Peserta Rapat</button>
+                <button class="btn btn-info ml-auto" id="createNewpeserta"><i class="fa fa-plus"></i> Tambah Peserta</button>
                 <table id="dataTable" class="table table-striped table-bordered">
                     <thead>
                         <tr>

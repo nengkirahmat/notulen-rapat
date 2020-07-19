@@ -29,9 +29,9 @@ class TempatController extends Controller
             })
             ->addColumn('action', function ($row) {
 
-                $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_tempat="' . $row->id_tempat . '" data-original-title="Edit" class="edit btn btn-primary btn-sm edittempat">Edit</a>';
+                $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_tempat="' . $row->id_tempat . '" data-original-title="Edit" class="edit btn btn-primary btn-xs edittempat"><i class="fa fa-pencil"></i> Ubah</a>';
 
-                $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_tempat="' . $row->id_tempat . '" data-original-title="Delete" class="btn btn-danger btn-sm deletetempat">Delete</a>';
+                $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_tempat="' . $row->id_tempat . '" data-original-title="Delete" class="btn btn-danger btn-xs deletetempat"><i class="fa fa-trash"></i> Hapus</a>';
 
                 return $btn;
             })
