@@ -51,8 +51,8 @@ class RapatController extends Controller
                     }
                 })
                 ->addColumn('action', function ($row) {
-
-                    $btn = '<form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
+                    $btn = '<a class="btn btn-success btn-xs" href="/notulen/proses/'.$row->id_rapat.'">Proses</a>';
+                    $btn = $btn.' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
 
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Edit" class="edit btn btn-primary  btn-xs editrapat"><i class="fa fa-pencil"></i> Ubah</a>';
 

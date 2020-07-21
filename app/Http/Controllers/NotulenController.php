@@ -129,4 +129,8 @@ class NotulenController extends Controller
         return response()->json($response, 500);
     }
     }
+
+    public function proses(){
+        return view("notulen/proses_rapat");
+    }
 }
