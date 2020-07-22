@@ -76,21 +76,24 @@ class NotulenController extends Controller
      */
     public function store(Request $request)
     {
-        Notulen::updateOrCreate([
-            'id_notulen' => $request->id_notulen
+        $proses=Notulen::updateOrCreate([
+            'id_rapat' => $request->id_rapat
         ],[
             'id_rapat' => $request->id_rapat,
             'id_user' => 1,
             'isi_rapat' => $request->isi_rapat,
             'status_notulen' => $request->status_notulen,
             ]);
-
+        $status=Rapat::where('id_rapat',$request->id_rapat)
+                        ->update(['status_rapat'=>$request->status_rapat]);
         // return response
+        if ($proses and $status){
         $response = [
             'success' => true,
-            'message' => 'Notulen saved successfully.',
+            'message' => 'Berhasil Disimpan.',
         ];
-        return response()->json($response, 200);
+        return redirect()->back()->with($response);
+        }
     }
 
     /**
@@ -134,8 +137,8 @@ class NotulenController extends Controller
 
     public function proses(Request $request)
     {
-        if (!empty($_POST['id_rapat'])){
-        $id=$_POST['id_rapat'];
+        if (!empty($request->id)){
+        $id=$request->id;
     }else{
         return redirect()->back();
     }
@@ -170,7 +173,10 @@ class NotulenController extends Controller
                     ->join('tempat','tempat.id_tempat','=','rapat.id_tempat')
                     ->where('rapat.id_rapat','=',$id)
                     ->get();
-        return view('notulen.data_proses', compact(array('peserta','rapat')));
+        $data_notulen=Notulen::where('id_rapat',$id)->get();
+        return view('notulen.data_proses', compact(array('peserta','rapat','data_notulen')));
     }
+
+    
 
 }

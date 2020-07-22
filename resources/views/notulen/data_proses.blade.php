@@ -57,10 +57,12 @@
                     </address>
                 </div>
             </div>
-            <form action="notulen/save" method="POST">
+            <form action="/proses" method="POST">
+                @csrf
                 <input type="hidden" name="id_user" value="1">
                 <input type="hidden" name="id_rapat" value="{{$rapat[0]->id_rapat}}">
                 <input type="hidden" name="status_notulen" value="1">
+                <input type="hidden" name="status_rapat" value="2">
                 <label for="isi_rapat">Isi Rapat</label>
                 <textarea name="isi_rapat" id="isi_rapat" class="form-control">
 
@@ -164,7 +166,7 @@
         $('#isi_rapat').summernote({
             height: 100
         });
-
+$("#isi_rapat").summernote("code", "{{$data_notulen[0]->isi_rapat}}");
 
         // datatable
         var id="{{$rapat[0]->id_rapat}}";
