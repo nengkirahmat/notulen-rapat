@@ -28,41 +28,42 @@ class RapatController extends Controller
         }elseif ($request->status==4) {
             $status=4;
         }
-         $rapat = DB::table('rapat')
-                ->join('jenis', 'jenis.id_jenis', '=', 'rapat.id_jenis')
-                ->join('tempat', 'tempat.id_tempat', '=', 'rapat.id_tempat')
-                ->orWhereNull("rapat.deleted_at")
-                ->where("status_rapat",$status)
-                ->get();
+        $rapat = DB::table('rapat')
+        ->join('jenis', 'jenis.id_jenis', '=', 'rapat.id_jenis')
+        ->join('tempat', 'tempat.id_tempat', '=', 'rapat.id_tempat')
+        ->orWhereNull("rapat.deleted_at")
+        ->where("status_rapat",$status)
+        ->get();
         
         if ($request->ajax()) {
             return Datatables::of($rapat)
-                ->addIndexColumn()
-                ->addColumn('tgl_rapat',function ($row){
-                    return $row->hari." / ".date('d F Y',strtotime($row->tgl_rapat));
+            ->addIndexColumn()
+            ->addColumn('tgl_rapat',function ($row){
+                return $row->hari." / ".date('d F Y',strtotime($row->tgl_rapat));
 
-                })
-                ->addColumn('waktu_rapat',function ($row){
-                    $akhir="";
-                    if ($row->jam_akhir=="00:00"){
-                        $akhir="Selesai";
-                    }else{
-                        $akhir=$row->jam_akhir;
-                    }
-                    return "Jam ".$row->jam_mulai." s/d ".$akhir;
-                })
-                ->addColumn('status_rapat',function ($row){
-                    if ($row->status_rapat==1){
-                        return "Belum Mulai";
-                    }elseif($row->status_rapat==2){
-                        return "Berlangsung";
-                    }elseif($row->status_rapat==3){
-                        return "Selesai";
-                    }elseif ($row->status_rapat==4) {
-                        return "Dibatalkan";
-                    }
-                })
-                ->addColumn('action', function ($row) {
+            })
+            ->addColumn('waktu_rapat',function ($row){
+                $akhir="";
+                if ($row->jam_akhir=="00:00"){
+                    $akhir="Selesai";
+                }else{
+                    $akhir=$row->jam_akhir;
+                }
+                return "Jam ".$row->jam_mulai." s/d ".$akhir;
+            })
+            ->addColumn('status_rapat',function ($row){
+                if ($row->status_rapat==1){
+                    return "Belum Mulai";
+                }elseif($row->status_rapat==2){
+                    return "Berlangsung";
+                }elseif($row->status_rapat==3){
+                    return "Selesai";
+                }elseif ($row->status_rapat==4) {
+                    return "Dibatalkan";
+                }
+            })
+            ->addColumn('action', function ($row) {
+                if ($row->status_rapat==1){
                     $btn ='<form action="notulen/proses" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-success btn-xs"><i class="fa fa-spinner"></i> Proses</button></form>';
 
                     $btn = $btn.' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
@@ -70,14 +71,19 @@ class RapatController extends Controller
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Edit" class="edit btn btn-warning  btn-xs editrapat"><i class="fa fa-pencil"></i> Ubah</a>';
 
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Delete" class="btn btn-danger  btn-xs deleterapat"><i class="fa fa-trash"></i> Hapus</a>';
-
+                }elseif($row->status_rapat==2){
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-judul="'.$row->judul_rapat.'" data-status_rapat="'.$row->status_rapat.'" data-original-title="Ubah Status" class="edit btn btn-warning btn-xs editstatus"><i class="fa fa-paper-plane-o"></i> Ubah Status</a>';
 
                     $btn = $btn . ' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
-                    return $btn;
-                })
-                ->rawColumns(['tgl_rapat','waktu_rapat','status_rapat','action'])
-                ->make(true);
+                }elseif($row->status_rapat==3){
+                    return "Selesai";
+                }elseif ($row->status_rapat==4) {
+                    return "Dibatalkan";
+                }
+                return $btn;
+            })
+            ->rawColumns(['tgl_rapat','waktu_rapat','status_rapat','action'])
+            ->make(true);
         }
         $jenis=Jenis::All();
         $tempat=Tempat::All();
@@ -140,17 +146,17 @@ class RapatController extends Controller
         dd($del);
         // return response
         if ($del){
-        $response = [
-            'success' => true,
-            'message' => 'rapat deleted successfully.',
-        ];
-        return response()->json($response, 200);
-    }else{
-        $response = [
-            'success' => false,
-            'message' => 'Gagal Hapus Data',
-        ];
-        return response()->json($response, 500);
-    }
+            $response = [
+                'success' => true,
+                'message' => 'rapat deleted successfully.',
+            ];
+            return response()->json($response, 200);
+        }else{
+            $response = [
+                'success' => false,
+                'message' => 'Gagal Hapus Data',
+            ];
+            return response()->json($response, 500);
+        }
     }
 }
