@@ -28,13 +28,6 @@ class PesertaController extends Controller
         if ($request->ajax()) {
             return Datatables::of($peserta)
                 ->addIndexColumn()
-                ->addColumn('status_hadir',function ($row){
-                    if ($row->status_peserta==1){
-                        return "Hadir";
-                    }elseif($row->status_peserta==2){
-                        return "Tidak Hadir";
-                    }
-                })
                 ->addColumn('action', function ($row) {
 
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_peserta="' . $row->id_peserta . '" data-original-title="Edit" class="edit btn btn-primary btn-xs editpeserta"><i class="fa fa-pencil"></i> Ubah</a>';
@@ -43,7 +36,7 @@ class PesertaController extends Controller
 
                     return $btn;
                 })
-                ->rawColumns(['status_hadir','action'])
+                ->rawColumns(['action'])
                 ->make(true);
         }
         $rapat=DB::table('rapat')
@@ -114,6 +107,28 @@ class PesertaController extends Controller
         $response = [
             'success' => false,
             'message' => 'Gagal Hapus Data',
+        ];
+        return response()->json($response, 500);
+    }
+    }
+
+    public function proses_kehadiran(){
+        $id_peserta=$_POST['id_peserta'];
+        $status_hadir=$_POST['status_hadir'];
+        $update = Peserta::where('id_peserta',$id_peserta)
+         ->update([
+            'status_hadir' => $status_hadir,
+          ]);
+        if ($update){
+         $response = [
+            'success' => true,
+            'message' => 'Berhasil Diperbaharui.',
+        ];
+        return response()->json($response, 200);
+        }else{
+        $response = [
+            'success' => false,
+            'message' => 'Gagal Diperbaharui',
         ];
         return response()->json($response, 500);
     }

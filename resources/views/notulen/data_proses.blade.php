@@ -55,7 +55,7 @@
                                 </div>
                             </div>
 
-                <button class="btn btn-info ml-auto" id="createNewpeserta"><i class="fa fa-plus"></i> Tambah Peserta</button>
+               <!--  <button class="btn btn-info ml-auto" id="createNewpeserta"><i class="fa fa-plus"></i> Tambah Peserta</button> -->
                 <table id="dataTable" class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -64,6 +64,7 @@
                             <th>Divisi</th>
                             <th>Jabatan</th>
                             <th>No. Ponsel</th>
+                            <th>Status Hadir</th>
                             <th width="140px">Aksi</th>
                         </tr>
                     </thead>
@@ -147,7 +148,7 @@
             processing: true,
             serverSide: true,
            ajax: {
-            url: "{{ url('pesertatable').'/'.$rapat[0]->id_rapat }}",
+            url: "{{ url('prosestable').'/'.$rapat[0]->id_rapat }}",
             type: "POST",
             data: {id_rapat:"{{$rapat[0]->id_rapat}}"},
         },
@@ -157,6 +158,7 @@
             {data: 'divisi', name: 'divisi'},
             {data: 'jabatan', name: 'jabatan'},
             {data: 'hp', name: 'hp'},
+            {data: 'status_hadir', name: 'status_hadir'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
@@ -263,6 +265,37 @@
         //         }
         //     });
         // });
+
+        $(document).on("click","#status_hadir",function(){
+            var status=$(this).val();
+            if (status==0 || status==2 || status=='')
+            {
+             var id_peserta=$(this).data("id");
+            var status_hadir="1";
+            }
+            else
+            {
+            var id_peserta=$(this).data("id");
+            var status_hadir="2";
+            }
+            $.ajax({
+                data: {id_peserta:id_peserta,status_hadir:status_hadir},
+                url: "{{ url('peserta/kehadiran') }}",
+                type: "POST",
+                dataType: 'json',
+                success: function (data) {
+                  table.draw();
+                    swal({
+                        title: "Berhasil Diperbaharui!",
+                        text: "",
+                        type: "success"
+                    });
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        });
 
     });
 </script>          

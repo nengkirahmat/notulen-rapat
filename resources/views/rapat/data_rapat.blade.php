@@ -165,6 +165,44 @@
 </div>
 </div>
 
+<div class="modal inmodal" id="ajaxModel2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Ubah Status Rapat</h4>
+            </div>
+            <form id="statusForm" name="statusForm" class="form-horizontal">
+                <div class="modal-body">
+                    <input type="hidden" name="id_rapat" id="id_rapat2">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Judul Rapat</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="judul_rapat" id="judul_rapat2" readonly="">
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Status Rapat</label>
+                        <div class="col-sm-9">
+                        <select name="status_rapat" class="form-control" id="status_rapat2" required="">
+                            <option value="">Pilih</option>
+                            <option value="2">Proses</option>
+                            <option value="3">Selesai</option>
+                            <option value="4">Dibatalkan</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary" id="statusBtn">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <script type="text/javascript">
  $(document).ready(function(){ 
         //ajax setup
@@ -192,7 +230,8 @@
             serverSide: true,
             ajax: {
                 url: "{{ url('rapattable') }}",
-                type: "POST"
+                type: "POST",
+                data:{status:1}
             },
             columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},

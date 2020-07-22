@@ -18,11 +18,23 @@ class RapatController extends Controller
      */
     public function index(Request $request)
     {
-        $rapat = DB::table('rapat')
+        $status="";
+        if ($request->status==1){
+            $status=1;
+        }elseif ($request->status==2) {
+            $status=2;
+        }elseif ($request->status==3) {
+            $status=3;
+        }elseif ($request->status==4) {
+            $status=4;
+        }
+         $rapat = DB::table('rapat')
                 ->join('jenis', 'jenis.id_jenis', '=', 'rapat.id_jenis')
                 ->join('tempat', 'tempat.id_tempat', '=', 'rapat.id_tempat')
                 ->orWhereNull("rapat.deleted_at")
+                ->where("status_rapat",$status)
                 ->get();
+        
         if ($request->ajax()) {
             return Datatables::of($rapat)
                 ->addIndexColumn()
@@ -51,13 +63,17 @@ class RapatController extends Controller
                     }
                 })
                 ->addColumn('action', function ($row) {
+                    $btn ='<form action="notulen/proses" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-success btn-xs"><i class="fa fa-spinner"></i> Proses</button></form>';
 
-                    $btn = '<form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
+                    $btn = $btn.' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
 
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Edit" class="edit btn btn-primary  btn-xs editrapat"><i class="fa fa-pencil"></i> Ubah</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Edit" class="edit btn btn-warning  btn-xs editrapat"><i class="fa fa-pencil"></i> Ubah</a>';
 
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Delete" class="btn btn-danger  btn-xs deleterapat"><i class="fa fa-trash"></i> Hapus</a>';
 
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-judul="'.$row->judul_rapat.'" data-status_rapat="'.$row->status_rapat.'" data-original-title="Ubah Status" class="edit btn btn-warning btn-xs editstatus"><i class="fa fa-paper-plane-o"></i> Ubah Status</a>';
+
+                    $btn = $btn . ' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
                     return $btn;
                 })
                 ->rawColumns(['tgl_rapat','waktu_rapat','status_rapat','action'])

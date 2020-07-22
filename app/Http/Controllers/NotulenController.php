@@ -5,6 +5,7 @@ use App\Notulen;
 use App\Rapat;
 use App\Jenis;
 use App\Tempat;
+use App\Peserta;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,7 @@ class NotulenController extends Controller
                 ->join('jenis', 'jenis.id_jenis', '=', 'rapat.id_jenis')
                 ->join('tempat', 'tempat.id_tempat', '=', 'rapat.id_tempat')
                 ->orWhereNull("rapat.deleted_at")
+                ->where("status_rapat","2")
                 ->get();
         if ($request->ajax()) {
             return Datatables::of($rapat)
@@ -52,7 +54,7 @@ class NotulenController extends Controller
                 })
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Ubah Status" class="edit btn btn-primary btn-xs editstatus"><i class="fa fa-pencil"></i> Ubah Status</a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-judul="'.$row->judul_rapat.'" data-status_rapat="'.$row->status_rapat.'" data-original-title="Ubah Status" class="edit btn btn-warning btn-xs editstatus"><i class="fa fa-paper-plane-o"></i> Ubah Status</a>';
 
                     $btn = $btn . ' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
 
@@ -129,4 +131,46 @@ class NotulenController extends Controller
         return response()->json($response, 500);
     }
     }
+
+    public function proses(Request $request)
+    {
+        if (!empty($_POST['id_rapat'])){
+        $id=$_POST['id_rapat'];
+    }else{
+        return redirect()->back();
+    }
+
+        $peserta = Peserta::where("id_rapat",$id)->get();
+
+        if ($request->ajax()) {
+            return Datatables::of($peserta)
+                ->addIndexColumn()
+                ->addColumn('status_hadir',function ($row){
+                    if ($row->status_hadir==1){
+                        return "<input type='checkbox' id='status_hadir' name='status_hadir' value='1' data-id='".$row->id_peserta."' checked='true'> Hadir";
+                    }elseif($row->status_hadir==2){
+                        return "<input type='checkbox' id='status_hadir' name='status_hadir' value='2' data-id='".$row->id_peserta."'> Tidak Hadir";
+                    }else{
+                        return "<input type='checkbox' id='status_hadir' name='status_hadir' value='0' data-id='".$row->id_peserta."'> Belum Absen";
+                    }
+                })
+                ->addColumn('action', function ($row) {
+
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_peserta="' . $row->id_peserta . '" data-original-title="Edit" class="edit btn btn-primary btn-xs editpeserta"><i class="fa fa-pencil"></i> Ubah</a>';
+
+                    // $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_peserta="' . $row->id_peserta . '" data-original-title="Delete" class="btn btn-danger btn-xs deletepeserta"><i class="fa fa-trash"></i> Hapus</a>';
+
+                    return $btn;
+                })
+                ->rawColumns(['status_hadir','action'])
+                ->make(true);
+        }
+        $rapat=DB::table('rapat')
+                    ->join('jenis','jenis.id_jenis','=','rapat.id_jenis')
+                    ->join('tempat','tempat.id_tempat','=','rapat.id_tempat')
+                    ->where('rapat.id_rapat','=',$id)
+                    ->get();
+        return view('notulen.data_proses', compact(array('peserta','rapat')));
+    }
+
 }
