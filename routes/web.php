@@ -1,7 +1,5 @@
 <?php
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('books','BookController');
 
@@ -23,3 +21,7 @@ Route::post('pesertatable/{id}','PesertaController@index');
 Route::resource('proses','NotulenController');
 Route::get('selesai','NotulenController@index1');
 Route::get('batal','NotulenController@index2');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -11,7 +11,7 @@
                 <h5><i class="fa fa-eye"></i> Detail Rapat</h5>
             </div>
             <div class="ibox-content">
-             <div class="row" style="font-size: 16px;">
+               <div class="row" style="font-size: 16px;">
                 <div class="col-sm-4">
                     <address>
                         <strong>Jenis Rapat</strong><br>
@@ -72,7 +72,7 @@
             <br>
 
             <!--  <button class="btn btn-info ml-auto" id="createNewpeserta"><i class="fa fa-plus"></i> Tambah Peserta</button> -->
-                <h5><i class="fa fa-user-circle"></i> Peserta Rapat</h5>
+            <h5><i class="fa fa-user-circle"></i> Peserta Rapat</h5>
             <div class="ibox-title" style="min-height: 0">
             </div>
             <table id="dataTable" class="table table-striped table-bordered">
@@ -166,8 +166,13 @@
         $('#isi_rapat').summernote({
             height: 100
         });
-$("#isi_rapat").summernote("code", "{{$data_notulen[0]->isi_rapat}}");
-
+        <?php
+        if (!empty($data_notulen[0]->isi_rapat)){
+            ?>
+            $("#isi_rapat").summernote("code", "{{$data_notulen[0]->isi_rapat}}");
+            <?php
+        }
+        ?>
         // datatable
         var id="{{$rapat[0]->id_rapat}}";
         var table = $('#dataTable').DataTable({
@@ -296,11 +301,11 @@ $("#isi_rapat").summernote("code", "{{$data_notulen[0]->isi_rapat}}");
             var status=$(this).val();
             if (status==0 || status==2 || status=='')
             {
-               var id_peserta=$(this).data("id");
-               var status_hadir="1";
-           }
-           else
-           {
+             var id_peserta=$(this).data("id");
+             var status_hadir="1";
+         }
+         else
+         {
             var id_peserta=$(this).data("id");
             var status_hadir="2";
         }
