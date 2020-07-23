@@ -12,35 +12,26 @@
             </div>
             <div class="ibox-content">
                <div class="row" style="font-size: 16px;">
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                     <address>
                         <strong>Jenis Rapat</strong><br>
-                        {{$rapat[0]->nama_jenis}}<br>
+                        {{$rapat[0]->nama_jenis}}<br><br>
                         <strong>Tempat</strong><br>
-                        {{$rapat[0]->nama_tempat}}<br>
+                        {{$rapat[0]->nama_tempat}}<br><br>
                         <strong>Hari / Tanggal Rapat / Jam</strong><br>
                         @if($rapat[0]->jam_akhir=="00:00")
                         <?php $akhir="Selesai"; ?>
                         @else
                         <?php $akhir=$rapat[0]->jam_akhir; ?>
                         @endif
-                        {{$rapat[0]->hari." / ".$rapat[0]->tgl_rapat." / ".$rapat[0]->jam_mulai." - ".$akhir}}<br>
-
-                    </address>
-                </div>
-                <div class="col-sm-4">
-                    <address>
+                        
+                        {{$rapat[0]->hari." / ".$rapat[0]->tgl_rapat." / ".$rapat[0]->jam_mulai." - ".$akhir}}<br><br>
                         <strong>Judul Rapat</strong><br>
-                        {{$rapat[0]->judul_rapat}}<br>
+                        {{$rapat[0]->judul_rapat}}<br><br>
                         <strong>Pimpinan Rapat</strong><br>
-                        {{$rapat[0]->pimpinan_rapat}}<br>
-
-                    </address>
-                </div>
-                <div class="col-sm-4">
-                    <address>
+                        {{$rapat[0]->pimpinan_rapat}}<br><br>
                         <strong>Sifat Rapat</strong><br>
-                        {{$rapat[0]->sifat_rapat}}<br>
+                        {{$rapat[0]->sifat_rapat}}<br><br>
                         <strong>Status Rapat</strong><br>
                         <?php
                         if ($rapat[0]->status_rapat==1){
@@ -56,20 +47,64 @@
                         {{$status}}<br>
                     </address>
                 </div>
-            </div>
-            <form action="/proses" method="POST">
+                <div class="col-sm-7">
+                  <div>
+                    @if (empty($data_notulen[0]->id_notulen))
+                        <form action="/proses" method="POST">
                 @csrf
                 <input type="hidden" name="id_user" value="1">
                 <input type="hidden" name="id_rapat" value="{{$rapat[0]->id_rapat}}">
-                <input type="hidden" name="status_notulen" value="1">
-                <input type="hidden" name="status_rapat" value="2">
+                
                 <label for="isi_rapat">Isi Rapat</label>
                 <textarea name="isi_rapat" id="isi_rapat" class="form-control">
 
                 </textarea><br>
-                <button type="submit" class="btn btn-primary btn-rounded btn-block"><i class="fa fa-save"></i> Simpan</button>
+                @if (empty($data_notulen[0]->id_notulen))
+                <input type="hidden" name="status_notulen" value="1">
+                <input type="hidden" name="status_rapat" value="2">
+                    <button type="submit" class="btn btn-primary btn-rounded btn-block"><i class="fa fa-save"></i> Simpan Data</button>
+                @else
+                    @if($rapat[0]->status_rapat==3 or $rapat[0]->status_rapat==4)
+                    <a href="#" class="btn btn-primary btn-rounded btn-block" disabled=""><i class="fa fa-save"></i> Tidak Dapat Dirubah</a>
+                    @else
+                    <input type="hidden" name="status_notulen" value="1">
+                    <input type="hidden" name="status_rapat" value="2">
+                    <button type="submit" class="btn btn-primary btn-rounded btn-block"><i class="fa fa-save"></i> Perbaharui Data</button>
+                    @endif
+                @endif
+                
             </form>
+                    @else
+                        @if($rapat[0]->status_rapat==3 or $rapat[0]->status_rapat==4)
+                                <label for="isi_rapat">Isi Rapat</label><br>
+                                <?php echo $data_notulen[0]->isi_rapat; ?>
+                        @else
+                        <form action="/proses" method="POST">
+                            @csrf
+                            <input type="hidden" name="id_user" value="1">
+                            <input type="hidden" name="id_rapat" value="{{$rapat[0]->id_rapat}}">
+                            
+                            <label for="isi_rapat">Isi Rapat</label>
+                            <textarea name="isi_rapat" id="isi_rapat" class="form-control">
+
+                            </textarea><br>
+                            
+                                @if($rapat[0]->status_rapat==3 or $rapat[0]->status_rapat==4)
+                                <a href="#" class="btn btn-primary btn-rounded btn-block" disabled=""><i class="fa fa-save"></i> Tidak Dapat Dirubah</a>
+                                @else
+                                <input type="hidden" name="status_notulen" value="1">
+                                <input type="hidden" name="status_rapat" value="2">
+                                <button type="submit" class="btn btn-primary btn-rounded btn-block"><i class="fa fa-save"></i> Perbaharui Data</button>
+                                @endif
+                        </form>
+                        @endif
+                    @endif
+            
+        </div>
             <br>
+                </div>
+            </div>
+            
 
             <!--  <button class="btn btn-info ml-auto" id="createNewpeserta"><i class="fa fa-plus"></i> Tambah Peserta</button> -->
             <h5><i class="fa fa-user-circle"></i> Peserta Rapat</h5>
@@ -164,12 +199,12 @@
         });
 
         $('#isi_rapat').summernote({
-            height: 100
+            height: 350
         });
         <?php
         if (!empty($data_notulen[0]->isi_rapat)){
             ?>
-            $("#isi_rapat").summernote("code", "{{$data_notulen[0]->isi_rapat}}");
+            $("#isi_rapat").summernote("code", "<?php echo $data_notulen[0]->isi_rapat; ?>");
             <?php
         }
         ?>

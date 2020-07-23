@@ -106,12 +106,20 @@ class NotulenController extends Controller
         return redirect()->back();
     }
 
-        $peserta = Peserta::where("id_rapat",$id)->get();
-
+        $peserta = Peserta::where("peserta.id_rapat",$id)
+                            ->join("rapat","rapat.id_rapat","=","peserta.id_rapat")
+                            ->get();
         if ($request->ajax()) {
             return Datatables::of($peserta)
                 ->addIndexColumn()
                 ->addColumn('status_hadir',function ($row){
+                    if ($row->status_rapat==3 or $row->status_rapat==4){
+                        if ($row->status_hadir==1){
+                            return "Hadir";
+                        }else{
+                            return "Tidak Hadir";
+                        }    
+                    }else{
                     if ($row->status_hadir==1){
                         return "<input type='checkbox' id='status_hadir' name='status_hadir' value='1' data-id='".$row->id_peserta."' checked='true'> Hadir";
                     }elseif($row->status_hadir==2){
@@ -119,13 +127,16 @@ class NotulenController extends Controller
                     }else{
                         return "<input type='checkbox' id='status_hadir' name='status_hadir' value='0' data-id='".$row->id_peserta."'> Belum Absen";
                     }
+                }
                 })
                 ->addColumn('action', function ($row) {
-
+                    if ($row->status_rapat==3 or $row->status_rapat==4){
+                        $btn="";    
+                    }else{
                     $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id_peserta="' . $row->id_peserta . '" data-original-title="Edit" class="edit btn btn-primary btn-xs editpeserta"><i class="fa fa-pencil"></i> Ubah</a>';
 
                     // $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_peserta="' . $row->id_peserta . '" data-original-title="Delete" class="btn btn-danger btn-xs deletepeserta"><i class="fa fa-trash"></i> Hapus</a>';
-
+                    }
                     return $btn;
                 })
                 ->rawColumns(['status_hadir','action'])
