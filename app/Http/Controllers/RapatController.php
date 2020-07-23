@@ -76,9 +76,9 @@ class RapatController extends Controller
 
                     $btn = $btn . ' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
                 }elseif($row->status_rapat==3){
-                    return "Selesai";
+                    $btn="";
                 }elseif ($row->status_rapat==4) {
-                    return "Dibatalkan";
+                    $btn="";
                 }
                 return $btn;
             })

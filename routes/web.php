@@ -21,4 +21,5 @@ Route::resource('peserta','PesertaController');
 Route::post('peserta/tambah','PesertaController@index');
 Route::post('pesertatable/{id}','PesertaController@index');
 Route::resource('proses','NotulenController');
-Route::post('notulentable','NotulenController@index');
+Route::get('selesai','NotulenController@index1');
+Route::get('batal','NotulenController@index2');

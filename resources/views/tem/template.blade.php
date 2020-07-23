@@ -57,7 +57,13 @@
                     <a href="/rapat"><i class="fa fa-edit"></i> <span class="nav-label">Data Rapat</span></a>
                 </li>
                 <li>
-                    <a href="/proses"><i class="fa fa-spinner"></i> <span class="nav-label">Data Proses</span></a>
+                    <a href="/proses"><i class="fa fa-spinner"></i> <span class="nav-label">Rapat Proses</span></a>
+                </li>
+                <li>
+                    <a href="/selesai"><i class="fa fa-check"></i> <span class="nav-label">Rapat Selesai</span></a>
+                </li>
+                <li>
+                    <a href="/batal"><i class="fa fa-times"></i> <span class="nav-label">Rapat Dibatalkan</span></a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Master</span><span class="fa arrow"></span></a>
