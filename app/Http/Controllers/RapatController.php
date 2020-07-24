@@ -31,8 +31,9 @@ class RapatController extends Controller
         $rapat = DB::table('rapat')
         ->join('jenis', 'jenis.id_jenis', '=', 'rapat.id_jenis')
         ->join('tempat', 'tempat.id_tempat', '=', 'rapat.id_tempat')
+        ->leftjoin('notulen','notulen.id_rapat','=','rapat.id_rapat')
         ->orWhereNull("rapat.deleted_at")
-        ->where("status_rapat",$status)
+        ->where("rapat.status_rapat",$status)
         ->get();
         
         if ($request->ajax()) {
@@ -72,12 +73,20 @@ class RapatController extends Controller
 
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-original-title="Delete" class="btn btn-danger  btn-xs deleterapat"><i class="fa fa-trash"></i> Hapus</a>';
                 }elseif($row->status_rapat==2){
-                    $btn ='<a href="notulen/detail/'.$row->id_rapat.'" class="btn btn-success btn-xs btn-block"><i class="fa fa-eye"></i> Lihat Detail</a>';
+                    $btn="";
+                    if (!empty($row->id_notulen)){
+                        $btn ='<a href="notulen/detail/'.$row->id_rapat.'" class="btn btn-info btn-xs btn-block"><i class="fa fa-check"></i> Sudah Ada Data</a>';    
+                    }
+                    $btn =$btn.' <a href="notulen/detail/'.$row->id_rapat.'" class="btn btn-success btn-xs btn-block"><i class="fa fa-eye"></i> Lihat Detail</a>';
                     $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-judul="'.$row->judul_rapat.'" data-status_rapat="'.$row->status_rapat.'" data-original-title="Ubah Status" class="edit btn btn-warning btn-xs editstatus"><i class="fa fa-paper-plane-o"></i> Ubah Status</a>';
 
                     $btn = $btn . ' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
                 }elseif($row->status_rapat==3){
-                    $btn ='<a href="notulen/detail/'.$row->id_rapat.'" class="btn btn-success btn-xs btn-block"><i class="fa fa-spinner"></i> Lihat Detail</a>';
+                    $btn="";
+                    if (!empty($row->id_notulen)){
+                        $btn ='<a href="notulen/detail/'.$row->id_rapat.'" class="btn btn-info btn-xs btn-block"><i class="fa fa-check"></i> Sudah Ada Data</a>';    
+                    }
+                    $btn =$btn.' <a href="notulen/detail/'.$row->id_rapat.'" class="btn btn-success btn-xs btn-block"><i class="fa fa-spinner"></i> Lihat Detail</a>';
                 }elseif ($row->status_rapat==4) {
                     $btn="";
                 }
