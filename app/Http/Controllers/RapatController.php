@@ -29,13 +29,13 @@ class RapatController extends Controller
             $status=4;
         }
         $rapat = DB::table('rapat')
+        ->select("rapat.*","jenis.nama_jenis","tempat.nama_tempat","notulen.id_notulen")
         ->join('jenis', 'jenis.id_jenis', '=', 'rapat.id_jenis')
         ->join('tempat', 'tempat.id_tempat', '=', 'rapat.id_tempat')
-        ->leftjoin('notulen','notulen.id_rapat','=','rapat.id_rapat')
+        ->leftJoin('notulen','notulen.id_rapat','=','rapat.id_rapat')
         ->orWhereNull("rapat.deleted_at")
         ->where("rapat.status_rapat",$status)
         ->get();
-        
         if ($request->ajax()) {
             return Datatables::of($rapat)
             ->addIndexColumn()

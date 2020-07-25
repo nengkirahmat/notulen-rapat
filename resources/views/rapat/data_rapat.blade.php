@@ -293,6 +293,7 @@
                 $('#ajaxModel').modal('show');
                 $('#id_rapat').val(data.id_rapat);
                 $('#id_jenis').val(data.id_jenis);
+                $('#hari').val(data.hari);
                 $('#tgl_rapat').val(data.tgl_rapat);
                 $('#jam_mulai').val(data.jam_mulai);
                 $('#jam_akhir').val(data.jam_akhir);
