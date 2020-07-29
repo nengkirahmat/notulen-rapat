@@ -1,0 +1,7 @@
+AuthName "test1.solokkota.go.id statistics"
+AuthType Basic
+AuthUserFile /home/test1/.stats-htpasswd
+require valid-user
+<Files .stats-htpasswd>
+deny from all
+</Files>

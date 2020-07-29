@@ -1,0 +1,260 @@
+# Webalizer V2.23-08 Incremental Data - 07/28/2020 14:55:09
+2020 7 28 14 55 9
+983 425 2 42 21 4 21310757 356 10 0 0 0
+2 100 565 27 28
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+841 340 20499430 2 310 6 0 0
+142 85 811327 2 46 4 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+34 26 242160 7 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+8 2 6120 6 0 0
+7 7 4426065 7 0 0
+4 4 2529180 4 0 0
+2 2 1264590 2 0 0
+0 0 0 0 0 0
+103 59 1828307 36 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+115 34 2335263 65 0 0
+565 206 7788273 169 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+145 85 890799 60 0 0
+0
+0
+0
+425
+0
+0
+0
+0
+0
+0
+0
+9
+17
+0
+6
+0
+0
+0
+0
+0
+23
+385
+3
+0
+0
+3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+112
+0
+0
+0
+0
+0
+# -urls- 
+/rapat
+0 49 0 300870 0 0 0 0
+/assets/css/bootstrap.min.css
+0 17 0 340527 0 0 0 0
+/public/rapat
+0 8 0 50886 1 1 0 0
+/assets/css/plugins/datapicker/datepicker3.css
+0 11 0 36256 0 0 0 0
+/assets/css/plugins/clockpicker/clockpicker.css
+0 12 0 16560 0 0 0 0
+/tempat/data
+0 13 0 14296 0 1 0 0
+/assets/css/animate.css
+0 15 0 73665 0 0 0 0
+/assets/js/plugins/pace/pace.min.js
+0 10 0 46410 0 0 0 0
+/assets/js/plugins/slimscroll/jquery.slimscroll.min.js
+0 10 0 21770 0 0 0 0
+/jenistable
+0 11 0 20209 0 0 0 0
+/assets/css/plugins/sweetalert/sweetalert.css
+0 10 0 33320 0 0 0 0
+/favicon.ico
+0 22 0 5346 0 0 0 0
+/assets/font-awesome/fonts/fontawesome-webfont.woff2
+0 9 0 541857 0 0 0 0
+/assets/js/plugins/datapicker/bootstrap-datepicker.js
+0 10 0 123620 0 0 0 0
+/jenis/1
+0 1 0 954 0 0 0 0
+/assets/font-awesome/css/font-awesome.css
+0 17 0 131308 0 0 0 0
+/public/login
+0 11 0 23335 0 0 0 0
+/jenis/2
+0 1 0 960 0 0 0 0
+/pesertatable/1
+0 4 0 7881 0 0 0 0
+/login
+0 8 0 16744 0 1 0 0
+/peserta/tambah
+0 3 0 15908 1 0 0 0
+/assets/js/plugins/clockpicker/clockpicker.js
+0 10 0 61190 0 0 0 0
+/rapat/public/login
+0 1 0 2122 0 0 0 0
+/selesai
+0 2 0 7766 0 0 0 0
+/jenis
+0 24 0 101725 0 0 0 0
+/assets/js/plugins/metisMenu/jquery.metisMenu.js
+0 10 0 15040 0 0 0 0
+/tempat
+0 8 0 19216 0 0 0 0
+/peserta
+0 1 0 956 0 0 0 0
+/
+0 17 0 10749685 7 3 0 0
+/assets/css/patterns/header-profile.png
+1 10 0 49146 0 0 0 0
+/rapattable
+0 21 0 54214 0 0 0 0
+/assets/js/bootstrap.min.js
+0 10 0 101320 0 0 0 0
+/assets/css/bootstrap.min.css.map
+0 7 0 712733 0 0 0 0
+/proses
+0 3 0 13849 0 0 0 0
+/assets/js/plugins/sweetalert/sweetalert.min.js
+0 10 0 55430 0 0 0 0
+/assets/img/rapat-img2.png
+1 1 0 82169 0 0 0 0
+/assets/js/inspinia.js
+0 10 0 25300 0 0 0 0
+/assets/js/jquery-2.1.1.js
+0 10 0 297970 0 0 0 0
+/assets/img/profile_small.jpg
+1 10 0 98050 0 0 0 0
+/batal
+0 1 0 3876 0 0 0 0
+/assets/css/style.css
+0 12 0 398292 0 0 0 0
+/assets/font-awesome/fonts/fontawesome-webfont.woff
+0 1 0 98272 0 0 0 0
+# End Of Table - urls
+# -sites- (monthly)
+192.168.14.254
+0 4 1 632965 2 1595928674 0 0
+-
+192.168.14.247
+0 979 424 20677792 8 1595948109 0 0
+/login
+# End Of Table - sites (monthly)
+# -sites- (daily)
+192.168.14.254
+0 2 0 0 1 1595928674 0 0
+-
+192.168.14.247
+0 140 85 811327 3 1595948109 0 0
+/login
+# End Of Table - sites (daily)
+# -referrers- 
+http://test1.solokkota.go.id/login
+0 5
+https://test1.solokkota.go.id/tempat
+0 20
+https://test1.solokkota.go.id/login
+0 13
+https://test1.solokkota.go.id/selesai
+0 16
+http://test1.solokkota.go.id/rapat
+0 58
+https://test1.solokkota.go.id/rapat/
+0 1
+https://test1.solokkota.go.id/public/login
+0 28
+https://test1.solokkota.go.id/rapat/public/login
+0 4
+https://test1.solokkota.go.id/rapat
+0 297
+- (Direct Request)
+0 198
+https://test1.solokkota.go.id/proses
+0 18
+https://test1.solokkota.go.id/jenis
+0 104
+http://test1.solokkota.go.id/jenis
+0 14
+https://test1.solokkota.go.id/assets/css/style.css
+0 8
+https://test1.solokkota.go.id/rapat/public/index.php
+0 1
+http://test1.solokkota.go.id/assets/font-awesome/css/font-awesome.css
+0 2
+https://test1.solokkota.go.id/public/rapat
+0 129
+https://test1.solokkota.go.id/peserta/tambah
+0 47
+https://test1.solokkota.go.id/assets/font-awesome/css/font-awesome.css
+0 8
+http://test1.solokkota.go.id/assets/css/style.css
+0 2
+https://test1.solokkota.go.id/batal
+0 10
+# End Of Table - referrers
+# -agents- 
+Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Mobile Safa
+0 300
+Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0
+0 285
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36 Edg/84.0.5
+0 92
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36
+0 303
+# End Of Table - agents
+# -search strings- 
+# End Of Table - search strings
+# -usernames- 
+# End Of Table - usernames
