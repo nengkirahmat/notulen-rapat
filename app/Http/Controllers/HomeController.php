@@ -33,8 +33,17 @@ class HomeController extends Controller
             $kelompok = Kelhukum::All();
                 $hukum = Hukum::where('status_hukum','=','1')->paginate(10);
         }
-        
-        return view("home",compact(array('kelompok','hukum')));
+        $rapat = DB::table('rapat')
+        ->select("rapat.*","jenis.nama_jenis","tempat.nama_tempat")
+        ->join('jenis', 'jenis.id_jenis', '=', 'rapat.id_jenis')
+        ->join('tempat', 'tempat.id_tempat', '=', 'rapat.id_tempat')
+        //->leftJoin('notulen','notulen.id_rapat','=','rapat.id_rapat')
+        ->orWhereNull("rapat.deleted_at")
+        ->where("rapat.status_rapat",'=','3')
+        ->where("rapat.sifat_rapat",'=','Terbuka')
+        ->latest()
+        ->get();
+        return view("home",compact(array('kelompok','hukum','rapat')));
     }
 
     /**

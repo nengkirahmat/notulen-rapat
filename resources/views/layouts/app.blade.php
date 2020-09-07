@@ -40,6 +40,12 @@
           <a class="nav-link" href="/">Beranda <span class="sr-only">(current)</span></a>
         </li>
 <!--         <li class="nav-item">
+          <a class="nav-link" href="/kategori/all">Produk Hukum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/hasil-rapat">Hasil Rapat</a>
+        </li> -->
+<!--         <li class="nav-item">
           <a class="nav-link" href="#">Tentang</a>
         </li>
         <li class="nav-item dropdown">

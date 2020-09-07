@@ -26,8 +26,9 @@
 
 <div class="container">
     <div class="row">
-    <div class="col-md-4">
-        
+    <div class="col-md-3">
+        <h4>Produk Hukum</h4>
+        <div style="width: 100%; height: 2px; background-color: red"></div>
           <ul class="web-vmenu">
 
 
@@ -37,7 +38,7 @@
 
             foreach($kelompok as $kel){
               echo "<li><span>$kel->nama_kel</span>";
-              echo "<ul class='active'>";
+              echo "<ul class='active' style='padding-left:15px;'>";
 
               $id_kel=$kel->id_kel;
               $kategori=Kathukum::where('kelompok','=',$id_kel)->get();
@@ -53,13 +54,15 @@
           </ul>
 </div>
   
-<div class="col-md-8">
+<div class="col-md-6">
+    <h4>Daftar Produk Hukum</h4>
+    <div style="width: 100%; height: 2px; background-color: red"></div>
             @foreach($hukum as $h)
 
             <div style="border:1px solid #CCC; border-radius:4px; text-align:left; padding:1%; margin:5px 0; font-family:Arial; font-size:14px;">
               <table cellpadding="3" border="0">
                 <tbody><tr>
-                  <td colspan="3" valign="top"><a href="produkhukum-1108" style="color:#000; text-decoration:none;"><b>{{$h->nama_hukum}}</b></a>
+                  <td colspan="3" valign="top"><b style="color:#000;">{{$h->nama_hukum}}</b>
                   </td></tr>
                   <tr>
                     <td colspan="3" valign="top"><p style="color:#004F75; margin: 0;">{{$h->tentang}}</p></td>
@@ -90,6 +93,18 @@
               </div>
 
 
+            </div>
+            <div class="col-md-3">
+                <h4>Daftar Hasil Rapat</h4>
+                <div style="width: 100%; height: 2px; background-color: red"></div>
+                @foreach($rapat as $rapat)
+                <div style="border:1px solid #CCC; border-radius:4px; text-align:left; padding:2%; margin:5px 0; font-family:Arial; font-size:14px;">
+                    <b style="color: #000">{{$rapat->judul_rapat}}</b><br>
+                    <small style="color: #004F75;">{{$rapat->hari." / ".date('d F Y',strtotime($rapat->tgl_rapat))}}</small><br>
+                    {{$rapat->nama_tempat}}<br>
+                    <a href="{{url('printnotulen/'.encrypt($rapat->id_rapat))}}" style="font-weight:bold; color:#006DA0; text-decoration:none;" target="_blank">DOWNLOAD HASIL RAPAT</a>
+                </div>
+                @endforeach
             </div>
 </div>
 </div>
