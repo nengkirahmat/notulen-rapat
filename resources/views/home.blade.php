@@ -80,7 +80,7 @@
                     </td>
                   </tr>
                   <tr> -->
-                    <td colspan="3" valign="top"><a href="{{url('download/'.encrypt($h->file_hukum))}}" style="font-weight:bold; color:#006DA0; text-decoration:none;" target="_blank">DOWNLOAD</a></td>
+                    <td colspan="3" valign="top"><a href="{{url('download/'.encrypt($h->file_hukum))}}" style="font-weight:bold; color:#006DA0; text-decoration:none;">DOWNLOAD</a></td>
                   </tr>
                 </tbody></table>
               </div>
@@ -102,7 +102,7 @@
                     <b style="color: #000">{{$rapat->judul_rapat}}</b><br>
                     <small style="color: #004F75;">{{$rapat->hari." / ".date('d F Y',strtotime($rapat->tgl_rapat))}}</small><br>
                     {{$rapat->nama_tempat}}<br>
-                    <a href="{{url('printnotulen/'.encrypt($rapat->id_rapat))}}" style="font-weight:bold; color:#006DA0; text-decoration:none;" target="_blank">DOWNLOAD HASIL RAPAT</a>
+                    <a href="{{url('printnotulen/'.encrypt($rapat->id_rapat))}}" style="font-weight:bold; color:#006DA0; text-decoration:none;">DOWNLOAD HASIL RAPAT</a>
                 </div>
                 @endforeach
             </div>
