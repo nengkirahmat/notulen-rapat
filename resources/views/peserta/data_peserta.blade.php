@@ -136,8 +136,8 @@
                         <label for="nama_peserta" class="col-sm-3 control-label">Nama Peserta</label>
                         <div class="col-sm-9">
                             <select name="select" class="form-control select3">
-                                @foreach($anggotadprd as $dprd)
                                 <option value="">Pilih Nama</option>
+                                @foreach($anggotadprd as $dprd)
                                 <option value="{{$dprd->id_anggotadprd}}">{{$dprd->nama_anggotadprd}}</option>
                                 @endforeach
                             </select>         
