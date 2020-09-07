@@ -83,15 +83,16 @@ class RapatController extends Controller
                     $btn="";
                     if (!empty($row->id_notulen)){
                         $btn ='<a href="notulen/detail/'.$row->id_rapat.'" class="btn btn-info btn-xs btn-block"><i class="fa fa-check"></i> Sudah Ada Data</a>';    
-                    }
+                    }else{
                     $btn =$btn.' <a href="notulen/detail/'.$row->id_rapat.'" class="btn btn-success btn-xs btn-block"><i class="fa fa-eye"></i> Lihat Detail</a>';
+                    }
                     $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id_rapat="' . $row->id_rapat . '" data-judul="'.$row->judul_rapat.'" data-status_rapat="'.$row->status_rapat.'" data-original-title="Ubah Status" class="edit btn btn-warning btn-xs editstatus"><i class="fa fa-paper-plane-o"></i> Ubah Status</a>';
 
                     // $btn = $btn . ' <form action="peserta/tambah" method="post">'.csrf_field().'<input type="hidden" name="id_rapat" value="'.$row->id_rapat.'"><button type="submit" class="btn btn-info btn-xs"><i class="fa fa-user-circle"></i> Peserta</button></form>';
                 }elseif($row->status_rapat==3){
                     $btn="";
                     if (!empty($row->id_notulen)){
-                        $btn ='<a target="_blank" href="printnotulen/'.Crypt::encrypt($row->id_rapat).'" class="btn btn-default btn-xs btn-block"><i class="fa fa-print"></i> Cetak Notulen</a>';    
+                        $btn ='<a href="printnotulen/'.Crypt::encrypt($row->id_rapat).'" class="btn btn-default btn-xs btn-block"><i class="fa fa-print"></i> Export Notulen</a>';    
                     }
                     $btn =$btn.' <a href="notulen/detail/'.$row->id_rapat.'" class="btn btn-success btn-xs btn-block"><i class="fa fa-spinner"></i> Lihat Detail</a>';
                 }elseif ($row->status_rapat==4) {
